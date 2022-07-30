@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification
+  application="Heroes of Newerth"
+  appversion="*"
+  mmversion="*"
+  name="Project Kongor UI"
+  version="1.0"
+  date="2022-07-30"
+  description="Enables the custom Project Kongor UI: homepage, ladder, etc."
+  author="MrHappyAsthma"
+  weblink="https://github.com/mrhappyasthma/Project-Kongor-UI-Mod"
+  updatecheckurl="http://raw.githubusercontent.com/mrhappyasthma/Project-Kongor-UI-Mod/master/version.txt"
+  updatedownloadurl="http://github.com/mrhappyasthma/Project-Kongor-UI-Mod/releases/download/Latest/Project_Kongor_UI.honmod"
+  >
+  
+  <!-- Ladder custom URLs (MMR and Mastery rankings) -->
+  <editfile name="ui/scripts/web_panel.lua">
+    <!-- MMR Ladder -->
+    <find><![CDATA[function HoN_Web_Panel:ShowLadder(widget)]]></find>
+    <insert position="before"><![CDATA[	SetSave('ui_url_playerLadder', 'https://primogenitary-drill.000webhostapp.com/ladder.html', 'string')]]></insert>
+    <!-- Mastery Ladder -->
+    <find><![CDATA[function HoN_Web_Panel:ShowMasteryAllLadder(widget)]]></find>
+    <insert position="before"><![CDATA[  SetSave('ui_url_playerMasteryAllLadder', 'https://primogenitary-drill.000webhostapp.com/mastery.html', 'string')]]></insert>
+  </editfile>
+
+  <!-- MoTD custom URL for new UI -->
+  <editfile name="ui/scripts/newui/homepage_v2.lua">
+    <find><![CDATA[	return motdURL.."?lang="..GetCvarString('host_language')]]></find>
+    <replace><![CDATA[	return 'https://primogenitary-drill.000webhostapp.com/motd.html']]></replace>
+  </editfile>
+  
+  <!-- MoTD custom URL for old UI -->
+  <editfile name="ui/scripts/news.lua">
+    <find><![CDATA[	return motdURL.."?lang="..GetCvarString('host_language')]]></find>
+    <replace><![CDATA[	return 'https://primogenitary-drill.000webhostapp.com/motd.html']]></replace>
+  </editfile>
+</modification>
